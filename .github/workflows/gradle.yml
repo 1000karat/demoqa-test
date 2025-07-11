@@ -35,5 +35,5 @@ jobs:
       run: chmod +x gradlew
 
     #Run test
-    - name: Build with Gradle Wrapper
-      run: ./gradlew clean test
+    - name: Run test
+      run: ./gradlew clean test -Dselenide.remote=http://localhost:4444/wd/hub
