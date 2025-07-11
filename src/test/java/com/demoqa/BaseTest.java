@@ -61,7 +61,7 @@ public class BaseTest {
 
     @Test
     public void shouldHaveCityTest() {
-        String[] expected = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
+        String[] expected = {"NCR", "Utta1r Pradesh", "Haryana", "Rajasthan"};
         practiceFormPage.openPage();
         $x("//div[contains(text(), 'Select State')]").click();
 
