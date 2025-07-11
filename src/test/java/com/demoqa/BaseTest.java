@@ -21,7 +21,7 @@ public class BaseTest {
         Configuration.browserSize = "1366x1085";
         Configuration.pageLoadStrategy = "eager";
         Configuration.holdBrowserOpen = false;
-        //test commit
+        Configuration.headless = false;
     }
 
     @AfterAll
