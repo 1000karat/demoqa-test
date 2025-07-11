@@ -10,7 +10,7 @@ public class PracticeFormPage {
 
     private final static String URL_PATH = "/automation-practice-form";
     private final static String WRAPPER_PAGE_TEXT = "Student Registration Form";
-    private final static String MODAL_TEXT = "Thanks for submitting the for1m";
+    private final static String MODAL_TEXT = "Thanks for submitting the form";
     private SelenideElement
             header = $(".practice-form-wrapper"),
             firstName = $("#firstName"),
