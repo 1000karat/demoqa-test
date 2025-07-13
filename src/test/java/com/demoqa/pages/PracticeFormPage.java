@@ -65,11 +65,11 @@ public class PracticeFormPage {
         return this;
     }
 
-    public PracticeFormPage setCalendar(String valueDay, String valueMonth, String valueYear) {
+    public PracticeFormPage setCalendar(String[] value) {
         calendar.click();
-        month.selectOption(valueMonth);
-        year.selectOption(valueYear);
-        $(".react-datepicker__day--0" + valueDay + ":not(.react-datepicker__day--outside-month)").click();
+        month.selectOption(value[1]);
+        year.selectOption(value[2]);
+        $(".react-datepicker__day--0" + value[0] + ":not(.react-datepicker__day--outside-month)").click();
         return this;
     }
 
