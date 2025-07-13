@@ -8,7 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class BaseTest {
@@ -60,7 +61,8 @@ public class BaseTest {
     }
 
     @Test
-    public void shouldHaveCityTest() {
+    public void shouldHaveStateTest() {
+        /** Тест Xpath для проверки наличия строк в меню State */
         String[] expected = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
         practiceFormPage.openPage();
         $x("//div[contains(text(), 'Select State')]").click();
