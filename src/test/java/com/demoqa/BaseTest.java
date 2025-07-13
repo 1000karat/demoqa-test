@@ -1,12 +1,15 @@
 package com.demoqa;
 
 import com.codeborne.selenide.Configuration;
+import com.demoqa.helper.GenerateData;
 import com.demoqa.pages.PracticeFormPage;
+import net.datafaker.Faker;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+
 
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
@@ -15,6 +18,8 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 public class BaseTest {
 
     PracticeFormPage practiceFormPage = new PracticeFormPage();
+    GenerateData generateData = new GenerateData();
+    Faker faker = new Faker();
 
     @BeforeEach
     void setUp() {
@@ -22,7 +27,7 @@ public class BaseTest {
         Configuration.browserSize = "1366x1085";
         Configuration.pageLoadStrategy = "eager";
         Configuration.holdBrowserOpen = false;
-        Configuration.headless = true;
+        Configuration.headless = false;
     }
 
     @AfterAll
@@ -30,18 +35,35 @@ public class BaseTest {
         closeWebDriver();
     }
 
-    @ParameterizedTest
-    @CsvFileSource(resources  = "/successfulRegistrationTestData.csv")
-    public void successfulRegistrationTest(String firstName, String lastName, String email, String genter, String phone,
-                                           String day, String month, String year, String subject, String hobbies,
-                                           String fileName, String address, String state, String city) {
+    @Test
+    public void generateCity() {
+        String str = faker.phoneNumber().subscriberNumber(10);
+        System.out.println(str);
+    }
+
+    @Test
+    public void successfulRegistrationTest() {
+        String firstName = faker.name().firstName(),
+                lastName = faker.name().lastName(),
+                email = faker.internet().emailAddress(),
+                genter = faker.options().option("Male", "Female", "Other"),
+                phone = faker.phoneNumber().subscriberNumber(10),
+                subject = faker.options().option("History", "Arts", "Biology", "Maths", "Commerce",
+                "Social Studies", "Civics", "Hindi"),
+                hobbies = faker.options().option("Sports", "Reading", "Music"),
+                fileName = "test_pic.jpg",
+                address = faker.address().fullAddress();
+        String[] calendarDate = generateData.generateCalendarDate();
+        String state = generateData.generateState(),
+                city = generateData.generateCity(state);
+
         practiceFormPage.openPage()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setEmail(email)
                 .setGenterWrapper(genter)
                 .setPhone(phone)
-                .setCalendar(day, month, year)
+                .setCalendar(calendarDate)
                 .setSubjectsInput(subject)
                 .setHobbiesWrapper(hobbies)
                 .setUploadPicture(fileName)
@@ -53,7 +75,7 @@ public class BaseTest {
                 .verifyResult("Student Email", email)
                 .verifyResult("Gender", genter)
                 .verifyResult("Mobile", phone)
-                .verifyResult("Date of Birth", day + " " + month + "," + year)
+                .verifyResult("Date of Birth", calendarDate[0] + " " + calendarDate[1] + "," + calendarDate[2])
                 .verifyResult("Subjects", subject)
                 .verifyResult("Hobbies", hobbies)
                 .verifyResult("Picture", fileName)
