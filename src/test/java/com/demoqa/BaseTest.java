@@ -4,14 +4,16 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.demoqa.helper.GenerateData;
 import com.demoqa.pages.PracticeFormPage;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Story;
 import net.datafaker.Faker;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import io.qameta.allure.selenide.AllureSelenide;
 
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
+import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class BaseTest {
@@ -33,6 +35,11 @@ public class BaseTest {
         closeWebDriver();
     }
 
+    @Tag("UI_TEST")
+    @Owner("1000karat")
+    @Feature("Student Registration Form")
+    @Story("Отправка заполненной формы")
+    @DisplayName("Registration Form Test")
     @Test
     public void successfulRegistrationTest() {
         String firstName = faker.name().firstName(),
@@ -74,16 +81,26 @@ public class BaseTest {
                 .verifyResult("Address", address);
     }
 
+    @Tag("UI_TEST")
+    @Owner("1000karat")
+    @Feature("Student Registration Form")
+    @Story("State")
+    @DisplayName("State expected")
     @Test
     public void shouldHaveStateTest() {
         /** Тест Xpath для проверки наличия строк в меню State */
         String[] expected = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
-        practiceFormPage.openPage();
-        $x("//div[contains(text(), 'Select State')]").click();
 
-        String getCity = $x("//div[contains(@class, 'css-26l3qy-menu')]").getText();
-        String[] cityArray = getCity.split("\\n");
+        step("Открываем страницу", () -> {
+            practiceFormPage.openPage();
+        });
+        step("Нажать 'State'", () -> {
+            $x("//div[contains(text(), 'Select State')]").click();
+        });
 
-        assertArrayEquals(expected, cityArray, "Название городов не совпадает");
+        String getState = $x("//div[contains(@class, 'css-26l3qy-menu')]").getText();
+        String[] stateArray = getState.split("\\n");
+
+        assertArrayEquals(expected, stateArray, "Название штатов не совпадает");
     }
 }
