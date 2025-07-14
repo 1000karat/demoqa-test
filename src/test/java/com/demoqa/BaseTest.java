@@ -7,9 +7,6 @@ import net.datafaker.Faker;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
-
 
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
@@ -52,10 +49,10 @@ public class BaseTest {
                 "Social Studies", "Civics", "Hindi"),
                 hobbies = faker.options().option("Sports", "Reading", "Music"),
                 fileName = "test_pic.jpg",
-                address = faker.address().fullAddress();
-        String[] calendarDate = generateData.generateCalendarDate();
-        String state = generateData.generateState(),
+                address = faker.address().fullAddress(),
+                state = generateData.generateState(),
                 city = generateData.generateCity(state);
+        String[] calendarDate = generateData.generateCalendarDate();
 
         practiceFormPage.openPage()
                 .setFirstName(firstName)
@@ -63,7 +60,7 @@ public class BaseTest {
                 .setEmail(email)
                 .setGenterWrapper(genter)
                 .setPhone(phone)
-                .setCalendar(calendarDate)
+                .setCalendar(calendarDate[0], calendarDate[1], calendarDate[2])
                 .setSubjectsInput(subject)
                 .setHobbiesWrapper(hobbies)
                 .setUploadPicture(fileName)

@@ -1,6 +1,7 @@
 package com.demoqa.pages;
 
 import com.codeborne.selenide.SelenideElement;
+import com.demoqa.helper.components.CalendarComponent;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -12,7 +13,7 @@ public class PracticeFormPage {
     private final static String URL_PATH = "/automation-practice-form";
     private final static String WRAPPER_PAGE_TEXT = "Student Registration Form";
     private final static String MODAL_TEXT = "Thanks for submitting the form";
-    private SelenideElement
+    private final SelenideElement
             header = $(".practice-form-wrapper"),
             firstName = $("#firstName"),
             lastName = $("#lastName"),
@@ -65,11 +66,12 @@ public class PracticeFormPage {
         return this;
     }
 
-    public PracticeFormPage setCalendar(String[] value) {
-        calendar.click();
+    public PracticeFormPage setCalendar(String day, String month, String year) {
+        CalendarComponent calendarComponent = new CalendarComponent(day, month, year);
+/*        calendar.click();
         month.selectOption(value[1]);
         year.selectOption(value[2]);
-        $(".react-datepicker__day--0" + value[0] + ":not(.react-datepicker__day--outside-month)").click();
+        $(".react-datepicker__day--0" + value[0] + ":not(.react-datepicker__day--outside-month)").click();*/
         return this;
     }
 
