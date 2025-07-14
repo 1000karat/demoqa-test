@@ -1,21 +1,21 @@
 package com.demoqa;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import com.demoqa.helper.GenerateData;
 import com.demoqa.pages.PracticeFormPage;
 import net.datafaker.Faker;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import io.qameta.allure.selenide.AllureSelenide;
 
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class BaseTest {
-
     PracticeFormPage practiceFormPage = new PracticeFormPage();
-    GenerateData generateData = new GenerateData();
     Faker faker = new Faker();
 
     @BeforeEach
@@ -25,17 +25,12 @@ public class BaseTest {
         Configuration.pageLoadStrategy = "eager";
         Configuration.holdBrowserOpen = false;
         Configuration.headless = true;
+        SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
     @AfterAll
     static void afterAll() {
         closeWebDriver();
-    }
-
-    @Test
-    public void generateCity() {
-        String str = faker.phoneNumber().subscriberNumber(10);
-        System.out.println(str);
     }
 
     @Test
@@ -50,9 +45,9 @@ public class BaseTest {
                 hobbies = faker.options().option("Sports", "Reading", "Music"),
                 fileName = "test_pic.jpg",
                 address = faker.address().fullAddress(),
-                state = generateData.generateState(),
-                city = generateData.generateCity(state);
-        String[] calendarDate = generateData.generateCalendarDate();
+                state = GenerateData.generateState(),
+                city = GenerateData.generateCity(state);
+        String[] calendarDate = GenerateData.generateCalendarDate();
 
         practiceFormPage.openPage()
                 .setFirstName(firstName)
