@@ -25,4 +25,4 @@
 5. Тест запускается удалённо на https://jenkins.autotests.cloud/ Скриншоты Allure Report и видео прохождения теста:  
 <img src="https://github.com/1000karat/demoqa-test/raw/jenkins/result-test/Screenshot_1.png" width="45%" height="45%"> - <img src="https://github.com/1000karat/demoqa-test/raw/jenkins/result-test/Screenshot_2.png" width="45%" height="45%">  
 <img src="https://github.com/1000karat/demoqa-test/raw/jenkins/result-test/Screenshot_3.png" width="45%" height="45%"> - <img src="https://github.com/1000karat/demoqa-test/raw/jenkins/result-test/Screenshot_4.png" width="45%" height="45%">  
-<img src="https://github.com/1000karat/demoqa-test/raw/jenkins/result-test/7fadee20731cf29e420b70e7d5dcc43d.gif" width="45%" height="45%">
+<p align="center"><img src="https://github.com/1000karat/demoqa-test/raw/jenkins/result-test/7fadee20731cf29e420b70e7d5dcc43d.gif" width="45%" height="45%"></p>
