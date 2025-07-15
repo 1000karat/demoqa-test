@@ -5,7 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 
 public class CalendarComponent {
-    private final static SelenideElement
+    private final SelenideElement
             dateOfBirthInput = $("#dateOfBirthInput"),
             setMonth = $(".react-datepicker__month-select"),
             setYear = $(".react-datepicker__year-select");

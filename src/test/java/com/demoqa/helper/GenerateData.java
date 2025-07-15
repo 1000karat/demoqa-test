@@ -7,22 +7,22 @@ import java.util.Locale;
 import java.util.Random;
 
 public class GenerateData {
-    static Random random = new Random();
-    static Faker faker = new Faker();
+    Random random = new Random();
+    Faker faker = new Faker();
 
-    public static String[] generateCalendarDate() {
+    public String[] generateCalendarDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy", Locale.ENGLISH);
         String[] date = sdf.format(faker.date().birthday(16, 100)).split(" ");
         return date;
     }
 
-    public static String generateState() {
+    public String generateState() {
         String[] stateArray = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
         int indexStateArray = random.nextInt(stateArray.length);
         return stateArray[indexStateArray];
     }
 
-    public static String generateCity(String state) {
+    public String generateCity(String state) {
         switch (state) {
             case "NCR": {
                 String[] cityArray = {"Delhi", "Gurgaon", "Noida"};

@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class BaseTest {
     PracticeFormPage practiceFormPage = new PracticeFormPage();
+    GenerateData generateData = new GenerateData();
     Faker faker = new Faker();
 
     @BeforeEach
@@ -52,9 +53,9 @@ public class BaseTest {
                 hobbies = faker.options().option("Sports", "Reading", "Music"),
                 fileName = "test_pic.jpg",
                 address = faker.address().fullAddress(),
-                state = GenerateData.generateState(),
-                city = GenerateData.generateCity(state);
-        String[] calendarDate = GenerateData.generateCalendarDate();
+                state = generateData.generateState(),
+                city = generateData.generateCity(state);
+        String[] calendarDate = generateData.generateCalendarDate();
 
         practiceFormPage.openPage()
                 .setFirstName(firstName)
