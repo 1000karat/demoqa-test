@@ -18,4 +18,6 @@
 4. Запуск тестов: `./gradlew clean test allureServe`
 
 ###### 15.07.2025
-1. Мелкие правки
+1. Мелкие правки  
+2. Создана ветка jenkins  
+3. Добавлена Configuration.remote  
