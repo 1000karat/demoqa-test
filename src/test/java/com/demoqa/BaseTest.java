@@ -92,7 +92,8 @@ public class BaseTest {
                 .verifyResult("Subjects", subject)
                 .verifyResult("Hobbies", hobbies)
                 .verifyResult("Picture", fileName)
-                .verifyResult("Address", address);
+                .verifyResult("Address", address)
+                .verifyResult("State and City", state + " " + city);
     }
 
 
