@@ -12,7 +12,7 @@
 3. Создан класс GenerateData, где реализована генерация значений даты календаря, state, city.  
 
 ###### 14.07.2025
-1. Заполнение календаря вынесено в отдельный класс CalendarComponent.
+1. Заполнение календаря вынесено в отдельный класс /helper/components/CalendarComponent.
 2. Добавлен Allure Report
 3. Добавлены аннотации @Step
 4. Запуск тестов: `./gradlew clean test allureServe`
@@ -20,4 +20,5 @@
 ###### 15.07.2025
 1. Мелкие правки  
 2. Создана ветка jenkins  
-3. Добавлена Configuration.remote  
+3. Добавлена Configuration.remote
+4. Добавлен класс /helper/AttachForTest для добавления содержимого страницы в Allure  

@@ -2,6 +2,7 @@ package com.demoqa;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import com.demoqa.helper.AttachForTest;
 import com.demoqa.helper.GenerateData;
 import com.demoqa.pages.PracticeFormPage;
 import io.qameta.allure.Feature;
@@ -30,6 +31,10 @@ public class BaseTest {
     @AfterAll
     static void afterAll() {
         closeWebDriver();
+        AttachForTest.screenshotAs("LastScreenshot");
+        AttachForTest.pageSource();
+        AttachForTest.browserConsoleLogs();
+        AttachForTest.addVideo();
     }
 
     @BeforeEach
