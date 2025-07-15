@@ -16,3 +16,6 @@
 2. Добавлен Allure Report
 3. Добавлены аннотации @Step
 4. Запуск тестов: `./gradlew clean test allureServe`
+
+###### 15.07.2025
+1. Мелкие правки
