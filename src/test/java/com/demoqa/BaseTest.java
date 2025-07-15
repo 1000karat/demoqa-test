@@ -2,24 +2,38 @@ package com.demoqa;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import com.demoqa.helper.AttachForTest;
 import com.demoqa.helper.GenerateData;
 import com.demoqa.pages.PracticeFormPage;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
+import io.qameta.allure.selenide.AllureSelenide;
 import net.datafaker.Faker;
 import org.junit.jupiter.api.*;
-import io.qameta.allure.selenide.AllureSelenide;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
+
+@Owner("1000karat")
+@Feature("Student Registration Form")
 public class BaseTest {
     PracticeFormPage practiceFormPage = new PracticeFormPage();
     GenerateData generateData = new GenerateData();
     Faker faker = new Faker();
+
+    @AfterAll
+    static void afterAll() {
+        AttachForTest.screenshotAs("LastScreenshot");
+        AttachForTest.pageSource();
+        AttachForTest.browserConsoleLogs();
+        AttachForTest.addVideo();
+    }
 
     @BeforeEach
     void setUp() {
@@ -27,18 +41,21 @@ public class BaseTest {
         Configuration.browserSize = "1366x1085";
         Configuration.pageLoadStrategy = "eager";
         Configuration.holdBrowserOpen = false;
-        Configuration.headless = true;
+        Configuration.headless = false;
+        Configuration.browser = "chrome";
+        Configuration.browserVersion = "128.0";
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
         SelenideLogger.addListener("allure", new AllureSelenide());
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                "enableVNC", true,
+                "enableVideo", true
+        ));
+
+        Configuration.browserCapabilities = capabilities;
     }
 
-    @AfterAll
-    static void afterAll() {
-        closeWebDriver();
-    }
-
-    @Tag("UI_TEST")
-    @Owner("1000karat")
-    @Feature("Student Registration Form")
+    @Tags({@Tag("UI_TEST"), @Tag("remote")})
     @Story("Отправка заполненной формы")
     @DisplayName("Registration Form Test")
     @Test
@@ -49,7 +66,7 @@ public class BaseTest {
                 genter = faker.options().option("Male", "Female", "Other"),
                 phone = faker.phoneNumber().subscriberNumber(10),
                 subject = faker.options().option("History", "Arts", "Biology", "Maths", "Commerce",
-                "Social Studies", "Civics", "Hindi"),
+                        "Social Studies", "Civics", "Hindi"),
                 hobbies = faker.options().option("Sports", "Reading", "Music"),
                 fileName = "test_pic.jpg",
                 address = faker.address().fullAddress(),
@@ -79,12 +96,11 @@ public class BaseTest {
                 .verifyResult("Subjects", subject)
                 .verifyResult("Hobbies", hobbies)
                 .verifyResult("Picture", fileName)
-                .verifyResult("Address", address);
+                .verifyResult("Address", address)
+                .verifyResult("State and City", state + " " + city);
     }
 
-    @Tag("UI_TEST")
-    @Owner("1000karat")
-    @Feature("Student Registration Form")
+    @Tags({@Tag("UI_TEST"), @Tag("remote")})
     @Story("State")
     @DisplayName("State expected")
     @Test

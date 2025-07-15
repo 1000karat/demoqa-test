@@ -100,7 +100,7 @@ public class PracticeFormPage {
         return this;
     }
 
-    @Step("Выбрать штат: {state} и город: {city}")
+    @Step("Выбрать штат: {valueState} и город: {valueCity}")
     public PracticeFormPage setStateAndSetCity(String valueState, String valueCity) {
         state.click();
         $("#stateCity-wrapper").$(byText(valueState)).click();
