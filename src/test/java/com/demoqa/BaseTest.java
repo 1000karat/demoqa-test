@@ -16,11 +16,10 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-@Tags({@Tag("UI_TEST"), @Tag("remote")})
+
 @Owner("1000karat")
 @Feature("Student Registration Form")
 public class BaseTest {
@@ -30,7 +29,6 @@ public class BaseTest {
 
     @AfterAll
     static void afterAll() {
-        closeWebDriver();
         AttachForTest.screenshotAs("LastScreenshot");
         AttachForTest.pageSource();
         AttachForTest.browserConsoleLogs();
@@ -57,6 +55,7 @@ public class BaseTest {
         Configuration.browserCapabilities = capabilities;
     }
 
+    @Tags({@Tag("UI_TEST"), @Tag("remote")})
     @Story("Отправка заполненной формы")
     @DisplayName("Registration Form Test")
     @Test
@@ -101,7 +100,7 @@ public class BaseTest {
                 .verifyResult("State and City", state + " " + city);
     }
 
-
+    @Tags({@Tag("UI_TEST"), @Tag("remote")})
     @Story("State")
     @DisplayName("State expected")
     @Test
