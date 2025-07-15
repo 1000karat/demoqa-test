@@ -22,3 +22,4 @@
 2. Создана ветка jenkins  
 3. Добавлена Configuration.remote
 4. Добавлен класс /helper/AttachForTest для добавления содержимого страницы в Allure  
+5. Тест запускается удалённо на https://jenkins.autotests.cloud/ Скриншоты Allure Report и видео прохождения теста:  
