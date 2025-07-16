@@ -42,9 +42,6 @@ public class BaseTest {
         Configuration.pageLoadStrategy = "eager";
         Configuration.holdBrowserOpen = false;
         Configuration.headless = false;
-        Configuration.browser = "chrome";
-        Configuration.browserVersion = "128.0";
-        Configuration.remote = "http://localhost:4444/wd/hub";
         SelenideLogger.addListener("allure", new AllureSelenide());
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
