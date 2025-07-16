@@ -41,10 +41,10 @@ public class BaseTest {
         Configuration.browserSize = "1366x1085";
         Configuration.pageLoadStrategy = "eager";
         Configuration.holdBrowserOpen = false;
-        Configuration.headless = true;
+        Configuration.headless = false;
         Configuration.browser = "chrome";
         Configuration.browserVersion = "128.0";
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.remote = "https://localhost:4444/wd/hub";
         SelenideLogger.addListener("allure", new AllureSelenide());
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
