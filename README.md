@@ -46,3 +46,7 @@
 
         Configuration.browserCapabilities = capabilities;
 ```
+-- [AppVeyor](https://www.appveyor.com) падает при указании:
+```
+        Configuration.remote = "http://localhost:4444/wd/hub";
+```
