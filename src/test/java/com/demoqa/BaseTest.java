@@ -42,15 +42,7 @@ public class BaseTest {
         Configuration.pageLoadStrategy = "eager";
         Configuration.holdBrowserOpen = false;
         Configuration.headless = true;
-        Configuration.remote = "http://localhost:4444/wd/hub";
         SelenideLogger.addListener("allure", new AllureSelenide());
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-                "enableVNC", true,
-                "enableVideo", true
-        ));
-
-        Configuration.browserCapabilities = capabilities;
     }
 
     @Tags({@Tag("UI_TEST"), @Tag("remote")})
