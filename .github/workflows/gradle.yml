@@ -27,7 +27,7 @@ jobs:
         run: chmod +x gradlew
       #Run test
       - name: Run test
-        run: ./gradlew clean test --info -Dselenide.remote=http://localhost:4444/wd/hub
+        run: ./gradlew clean test --info #-Dselenide.remote=http://localhost:4444/wd/hub
       #Allure скачиваем историю тестов
       - name: Get Allure history
         uses: actions/checkout@v2
