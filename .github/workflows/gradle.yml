@@ -20,8 +20,8 @@ jobs:
           java-version: '11'
           distribution: 'corretto'
       #Selenoid
-      #- name: Start selenoid
-      #  uses: Xotabu4/selenoid-github-action@v2
+      - name: Start selenoid
+        uses: Xotabu4/selenoid-github-action@v2
       #chmod
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew

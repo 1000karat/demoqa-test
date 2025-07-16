@@ -44,7 +44,7 @@ public class BaseTest {
         Configuration.headless = false;
         Configuration.browser = "chrome";
         Configuration.browserVersion = "128.0";
-        Configuration.remote = "https://localhost:4444/wd/hub";
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
         SelenideLogger.addListener("allure", new AllureSelenide());
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
