@@ -1,0 +1,3 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","2371","State expected","","Wed Jul 16 18:50:34 GMT 2025","passed","Wed Jul 16 18:50:36 GMT 2025","","com.demoqa.BaseTest","com.demoqa.BaseTest","shouldHaveStateTest"
+"","27841","Registration Form Test","","Wed Jul 16 18:50:06 GMT 2025","passed","Wed Jul 16 18:50:34 GMT 2025","","com.demoqa.BaseTest","com.demoqa.BaseTest","successfulRegistrationTest"
