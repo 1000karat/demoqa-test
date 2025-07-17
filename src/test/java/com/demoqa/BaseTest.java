@@ -1,5 +1,6 @@
 package com.demoqa;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.demoqa.helper.AttachForTest;
@@ -7,14 +8,18 @@ import com.demoqa.helper.GenerateData;
 import com.demoqa.pages.PracticeFormPage;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
+import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.selenide.AllureSelenide;
 import net.datafaker.Faker;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Map;
 
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -54,7 +59,7 @@ public class BaseTest {
         Configuration.browserCapabilities = capabilities;
     }
 
-    @Tags({@Tag("UI_TEST"), @Tag("remote")})
+    @Tags({@Tag("UI"), @Tag("remote")})
     @Story("Отправка заполненной формы")
     @DisplayName("Registration Form Test")
     @Test
@@ -99,9 +104,9 @@ public class BaseTest {
                 .verifyResult("State and City", state + " " + city);
     }
 
-    @Tags({@Tag("UI_TEST"), @Tag("remote")})
+    @Tags({@Tag("UI"), @Tag("state")})
     @Story("State")
-    @DisplayName("State expected")
+    @DisplayName("Проверка штатов")
     @Test
     public void shouldHaveStateTest() {
         /** Тест Xpath для проверки наличия строк в меню State */
@@ -118,5 +123,22 @@ public class BaseTest {
         String[] stateArray = getState.split("\\n");
 
         assertArrayEquals(expected, stateArray, "Название штатов не совпадает");
+    }
+
+    @Tags({@Tag("UI"), @Tag("mobile")})
+    @DisplayName("Негативные значения для поля Mobile")
+    @ParameterizedTest
+    @CsvSource({"\" \"", "1", "012345678", "123-123-12"})
+    public void mobileNumberNegativeValueTest(String phoneValue) {
+        practiceFormPage.openPage()
+                .setFirstName(faker.name().firstName())
+                .setLastName(faker.name().lastName())
+                .setGenterWrapper(faker.options().option("Male", "Female", "Other"))
+                .setPhone(phoneValue)
+                .buttonSubmit();
+
+        step("Показ значка 'ошибка'", () -> {
+            $("#userForm").shouldHave(Condition.attribute("class", "was-validated"));
+        });
     }
 }

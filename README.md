@@ -50,3 +50,6 @@
 ```
         Configuration.remote = "http://localhost:4444/wd/hub";
 ```
+
+###### 17.07.2025  
+1. Добавлен тест негативных вводимых значений для поля "Mobile". Прописан в gradle.yml, в .appveyor.yml не используется.

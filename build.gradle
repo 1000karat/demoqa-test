@@ -46,8 +46,9 @@ test {
     systemProperties(System.getProperties())
 }
 
-task remote_test(type: Test) {
-    useJUnitPlatform() {
-        includeTags("remote")
+task select_test(type: Test) {
+    useJUnitPlatform{
+        includeTags("UI", "state")
+        excludeTags("mobile")
     }
 }
