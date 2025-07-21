@@ -8,7 +8,6 @@ import com.demoqa.helper.GenerateData;
 import com.demoqa.pages.PracticeFormPage;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
-import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.selenide.AllureSelenide;
 import net.datafaker.Faker;
@@ -43,12 +42,12 @@ public class BaseTest {
     @BeforeEach
     void setUp() {
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1366x1085";
+        Configuration.browserSize = System.getProperty("browserSize", "1366x1085");
         Configuration.pageLoadStrategy = "eager";
         Configuration.holdBrowserOpen = false;
         Configuration.headless = false;
-        Configuration.browser = "chrome";
-        Configuration.browserVersion = "128.0";
+        Configuration.browser = System.getProperty("browser","chrome");
+        Configuration.browserVersion = System.getProperty("browserVersion", "128.0");
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
         SelenideLogger.addListener("allure", new AllureSelenide());
         DesiredCapabilities capabilities = new DesiredCapabilities();
