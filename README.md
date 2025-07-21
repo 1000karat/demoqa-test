@@ -1,22 +1,3 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/okh73s4b1r6c36gd?svg=true)](https://ci.appveyor.com/project/1000karat/demoqa-test) - [![Java CI with Gradle](https://github.com/1000karat/demoqa-test/actions/workflows/gradle.yml/badge.svg)](https://github.com/1000karat/demoqa-test/actions/workflows/gradle.yml)
-
-#### Changelog
-###### 11.07.2025 
-1. Создание репозитория demoqa-test для создания тестов https://demoqa.com/automation-practice-form  
-2. Используется: Java 11  
-3. Добавление CI [AppVeyor](https://www.appveyor.com)
-
-###### 13.07.2025
-1. Создана ветка helper  
-2. Подключена библиотека datafaker  
-3. Создан класс [GenerateData.java](src/test/java/com/demoqa/helper/GenerateData.java), где реализована генерация значений даты календаря, state, city.  
-
-###### 14.07.2025
-1. Заполнение календаря вынесено в отдельный класс [CalendarComponent.java](src/test/java/com/demoqa/helper/components/CalendarComponent.java)
-2. Добавлен Allure Report
-3. Добавлены аннотации @Step
-4. Запуск тестов: `./gradlew clean test allureServe`
-
 ###### 15.07.2025
 1. Мелкие правки  
 2. Создана ветка jenkins  
@@ -53,3 +34,8 @@
 
 ###### 17.07.2025  
 1. Добавлен тест негативных вводимых значений для поля "Mobile". Прописан в gradle.yml, в .appveyor.yml не используется.
+
+###### 21.07.2025  
+1. Удалено всё лишнее из ветки. Ветка для запуска на jenkins.  
+2. Добавлены System.getProperty и настроен jenkins на выбор параметров запуска.  
+   <img src="https://github.com/1000karat/demoqa-test/raw/jenkins/result-test/jenkins_param.png" width="45%" height="45%">
