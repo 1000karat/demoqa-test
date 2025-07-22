@@ -53,3 +53,8 @@ jobs:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
+      #telegram
+      - name: Send message to telegram
+        run: pwd
+      - name: cat
+        run: cat /notifications/config.json

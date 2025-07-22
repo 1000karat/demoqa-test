@@ -1,0 +1,21 @@
+{
+  "base": {
+    "logo": "",
+    "project": "demoqa-test",
+    "environment": "",
+    "comment": "@0x0000e, гляди что получилось!",
+    "reportLink": "https://github.com/1000karat/demoqa-test",
+    "language": "ru",
+    "allureFolder": "build/allure-report",
+    "enableChart": false,
+    "enableSuitesPublishing": false,
+    "customData": {}
+  },
+  "telegram": {
+    "token": "${{ secrets.TELEGRAM_BOT_TOKEN}}",
+    "chat": "${{ secrets.TELEGRAM_CHAT_ID}}",
+    "topic": "",
+    "replyTo": "",
+    "templatePath": "/templates/telegram.ftl"
+  }
+}
