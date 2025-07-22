@@ -48,9 +48,8 @@ public class BaseTest {
         Configuration.holdBrowserOpen = false;
         Configuration.headless = false;
         Configuration.browser = "chrome";
-        Configuration.browserVersion = System.getProperty("browserVersion", "138.0");
-        Configuration.remote = System.getProperty("remote", "http://localhost:4444/wd/hub");
-                //"https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.browserVersion = System.getProperty("browserVersion", "128.0");
+        Configuration.remote = System.getProperty("remote", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
         SelenideLogger.addListener("allure", new AllureSelenide());
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
