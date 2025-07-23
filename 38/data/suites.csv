@@ -1,0 +1,7 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","4641","Негативные значения для поля Mobile [3] 012345678","","Wed Jul 23 16:04:16 GMT 2025","passed","Wed Jul 23 16:04:21 GMT 2025","","com.demoqa.BaseTest","com.demoqa.BaseTest","mobileNumberNegativeValueTest"
+"","4349","Негативные значения для поля Mobile [2] 1","","Wed Jul 23 16:04:12 GMT 2025","passed","Wed Jul 23 16:04:16 GMT 2025","","com.demoqa.BaseTest","com.demoqa.BaseTest","mobileNumberNegativeValueTest"
+"","12767","Негативные значения для поля Mobile [1] "" ""","","Wed Jul 23 16:03:59 GMT 2025","passed","Wed Jul 23 16:04:12 GMT 2025","","com.demoqa.BaseTest","com.demoqa.BaseTest","mobileNumberNegativeValueTest"
+"","4220","Негативные значения для поля Mobile [4] 123-123-12","","Wed Jul 23 16:04:21 GMT 2025","passed","Wed Jul 23 16:04:25 GMT 2025","","com.demoqa.BaseTest","com.demoqa.BaseTest","mobileNumberNegativeValueTest"
+"","16969","Registration Form Test","","Wed Jul 23 16:04:25 GMT 2025","passed","Wed Jul 23 16:04:42 GMT 2025","","com.demoqa.BaseTest","com.demoqa.BaseTest","successfulRegistrationTest"
+"","2616","Проверка штатов","","Wed Jul 23 16:04:42 GMT 2025","passed","Wed Jul 23 16:04:44 GMT 2025","","com.demoqa.BaseTest","com.demoqa.BaseTest","shouldHaveStateTest"
