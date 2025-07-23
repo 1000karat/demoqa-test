@@ -27,7 +27,7 @@ jobs:
         run: chmod +x gradlew
       #Run test
       - name: Run test
-        run: ./gradlew clean test --info #-Dselenide.remote=http://localhost:4444/wd/hub
+        run: ./gradlew clean test --info -Dselenide.remote=http://localhost:4444/wd/hub
       #Allure скачиваем историю тестов
       - name: Get Allure history
         uses: actions/checkout@v2
@@ -53,8 +53,17 @@ jobs:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
-      #telegram
-      - name: Send message to telegram
-        run: pwd
-      - name: cat
-        run: cat /notifications/config.json
+
+      #Send notifications
+      - name: mkdir notifications
+        run: mkdir notifications
+      - name: create config.json file
+        run: echo "{\"base\":{\"logo\":\"\",\"project\":\"demoqa-test\",\"environment\":\"\",\"comment\":\"гляди что получилось!\",\"reportLink\":\"https://1000karat.github.io/demoqa-test\",\"language\":\"ru\",\"allureFolder\":\"allure-report\",\"enableChart\":true,\"enableSuitesPublishing\":false,\"customData\":{}},\"telegram\":{\"token\":\"${{ secrets.TELEGRAM_BOT_TOKEN}}\",\"chat\":\"${{ secrets.TELEGRAM_CHAT_ID}}\",\"topic\":\"\",\"replyTo\":\"\",\"templatePath\":\"/templates/telegram.ftl\"}}" >> notifications/config.json
+      #download jar
+      - name: download jar
+        run: wget -P notifications https://github.com/qa-guru/allure-notifications/releases/download/4.9.0/allure-notifications-4.9.0.jar
+      - name: chmod +x
+        run: chmod +x notifications/allure-notifications-4.9.0.jar
+      #send message
+      - name: send message
+        run: java "-DconfigFile=notifications/config.json" -jar notifications/allure-notifications-4.9.0.jar
